@@ -12,10 +12,11 @@ def generate_beautiful_map(routes, num_buses, base_lat, base_lon, original_image
     """
     try:
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
-        
-        # Configure OSMnx to have a slightly longer timeout and fewer retries to fail fast
-        ox.settings.timeout = 20
-        ox.settings.max_query_area_size = 50 * 1000 * 50 * 1000 # 50km * 50km
+
+        # Fail fast on network timeouts
+        ox.settings.timeout = 10
+        ox.settings.requests_timeout = 8
+        ox.settings.max_query_area_size = 50 * 1000 * 50 * 1000
         
         # 1. Download street network using a bounding box around the routes, or use the base lat/lon
         all_lats = []
@@ -93,14 +94,17 @@ def generate_beautiful_map(routes, num_buses, base_lat, base_lon, original_image
                     print(f"Warning: No path found between nodes {route_nodes[j]} and {route_nodes[j+1]} on route {rid}. Skipping segment.")
             
             if full_path:
-                # Plot the route on top of the base map
-                fig, ax = ox.plot_graph_route(G_proj, full_path, ax=ax, route_color=hex_color, route_linewidth=5, route_alpha=0.8, orig_dest_node_color=hex_color, orig_dest_node_size=50, show=False, close=False)
-                
-                # Plot stops as circles
+                # Plot route path using projected node coordinates (avoids ox.plot_graph_route API changes)
+                xs = [G_proj.nodes[n]["x"] for n in full_path]
+                ys = [G_proj.nodes[n]["y"] for n in full_path]
+                ax.plot(xs, ys, color=hex_color, linewidth=4, alpha=0.85, zorder=3)
+
+                # Stop markers
                 for lat, lon, _ in route:
-                    # Project lat/lon to match the graph's CRS
-                    # This is slightly tricky, so we plot the actual node we snapped to
-                    pass
+                    node = ox.distance.nearest_nodes(G, X=lon, Y=lat)
+                    nx_proj = G_proj.nodes[node]
+                    ax.scatter(nx_proj["x"], nx_proj["y"],
+                               s=40, color=hex_color, zorder=4, alpha=0.9)
 
         # 4. Save figure
         plt.tight_layout(pad=0)

@@ -6,8 +6,10 @@ def get_city_boundary(city_name=None, lat=None, lon=None):
     """
     Returns city boundary GeoDataFrame (EPSG:4326).
     Accepts city name string OR lat/lon coordinates.
+    Fails fast (6 s timeout) so app doesn't hang on network issues.
     """
     try:
+        ox.settings.requests_timeout = 6   # fail fast, don't block the app
         if city_name:
             gdf = ox.geocode_to_gdf(city_name)
         elif lat is not None and lon is not None:
@@ -16,7 +18,7 @@ def get_city_boundary(city_name=None, lat=None, lon=None):
             raise ValueError("Provide city_name or lat/lon")
         return gdf.to_crs(epsg=4326)
     except Exception as e:
-        print(f"[city_boundary] Boundary fetch failed: {e}")
+        print(f"[city_boundary] Boundary fetch failed (offline or rate-limited): {e}")
         return None
 
 
