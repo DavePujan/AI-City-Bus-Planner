@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import os
 import time
 import base64
 from pathlib import Path
@@ -35,12 +34,6 @@ from core.trunk_feeder import generate_trunk_feeder_network
 from core.transfer_hubs import optimize_transfer_hubs
 from utils.city_boundary import get_city_boundary, clip_points_to_boundary
 from utils.city_scale import compute_city_metrics, classify_city_scale, get_auto_parameters
-from utils.city_bootstrap import (
-    load_or_create_city,
-    estimate_city_radius_km,
-    get_zoom_from_radius,
-    get_city_cache_path,
-)
 import plotly.graph_objects as go
 import time
 
@@ -358,54 +351,42 @@ def render_routes_and_hubs(routes, stops_df, hubs_df, boundary_gdf=None):
 
 st.sidebar.header("⚙️ Control Panel")
 
-# ================= CITY BOOTSTRAP =================
-st.sidebar.markdown("### 🌍 City Bootstrap")
-target_city = st.sidebar.text_input("🏙 City Name", value="Mumbai")
-user_lat = st.sidebar.number_input("Latitude",  value=19.0760, format="%.6f")
-user_lon = st.sidebar.number_input("Longitude", value=72.8777, format="%.6f")
+mode = st.sidebar.radio(
+    "Input Mode",
+    ["CSV Coordinates", "Map Image (AI)"]
+)
 
-load_city_btn = st.sidebar.button("🌍 Load City Data", use_container_width=True)
+# New City Input
+target_city = st.sidebar.text_input("📍 Target City (for Map Alignment)", "New York, NY")
 
-# Cache info (disk only — no network call on render)
-_cache_path = get_city_cache_path(target_city)
-if os.path.exists(_cache_path):
-    _sz = os.path.getsize(_cache_path) / 1024
-    st.sidebar.caption(f"⚡ Cached · {_sz:.1f} KB")
-else:
-    st.sidebar.caption("📏 Radius auto-scales to city boundary on load")
+uploaded_file = st.sidebar.file_uploader(
+    "Upload Data",
+    type=["csv", "png", "jpg", "jpeg"]
+)
 
-st.sidebar.markdown("---")
-
-# Optionally upload a CSV to override OSM data
-mode = st.sidebar.radio("Data Source", ["Auto (OSM)", "Upload CSV", "Map Image (AI)"])
-uploaded_file = None
-if mode in ("Upload CSV", "Map Image (AI)"):
-    uploaded_file = st.sidebar.file_uploader(
-        "Upload File", type=["csv", "png", "jpg", "jpeg"]
-    )
-
-num_buses        = st.sidebar.slider("🚌 Total Buses", 1, 100, 10)
-operating_hours  = st.sidebar.slider("⏱ Operating Hours", 1, 24, 12)
+num_buses = st.sidebar.slider("🚌 Total Buses", 1, 100, 10)
+operating_hours = st.sidebar.slider("⏱ Operating Hours", 1, 24, 12)
 
 st.sidebar.markdown("---")
-min_spacing_m    = st.sidebar.slider("🚏 Min Stop Spacing (m)", 200, 800, 400, step=50)
-bus_capacity     = st.sidebar.slider("🚌 Bus Capacity (seats)", 30, 120, 60)
+min_spacing_m = st.sidebar.slider("🚏 Min Stop Spacing (m)", 200, 800, 400, step=50)
+bus_capacity = st.sidebar.slider("🚌 Bus Capacity (seats)", 30, 120, 60)
 target_load_factor = st.sidebar.slider("🎯 Target Load Factor", 0.4, 1.0, 0.75, step=0.05)
 
 st.sidebar.markdown("### ⏰ Temporal Service Tuning")
-peak_multiplier   = st.sidebar.slider("🚀 Peak Service Boost", 1.0, 3.0, 1.6, step=0.1)
-offpeak_multiplier= st.sidebar.slider("🌙 Off-Peak Service Factor", 0.3, 1.0, 0.6, step=0.05)
-peak_share        = st.sidebar.slider("📊 Peak Hour Share", 0.2, 0.6, 0.35, step=0.05)
+peak_multiplier = st.sidebar.slider("🚀 Peak Service Boost", 1.0, 3.0, 1.6, step=0.1)
+offpeak_multiplier = st.sidebar.slider("🌙 Off-Peak Service Factor", 0.3, 1.0, 0.6, step=0.05)
+peak_share = st.sidebar.slider("📊 Peak Hour Share", 0.2, 0.6, 0.35, step=0.05)
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("### 🤖 Smart Auto-Tune")
-auto_mode    = st.sidebar.toggle("🤖 Auto-Tune by City Scale", value=True)
-strict_gtfs  = st.sidebar.checkbox("🧪 Strict GTFS Validation", value=False)
+auto_mode = st.sidebar.toggle("🤖 Auto-Tune by City Scale", value=True)
+strict_gtfs = st.sidebar.checkbox("🧪 Strict GTFS Validation", value=False)
 
 run_btn = st.sidebar.button("🚀 Generate Smart Plan", use_container_width=True)
 
 if "generated" not in st.session_state:
     st.session_state.generated = False
+
 if run_btn:
     st.session_state.generated = True
 
@@ -503,49 +484,76 @@ def file_download_button(path):
     st.markdown(href, unsafe_allow_html=True)
 
 # ================= MAIN LOGIC =================
-# --- City data loading ---
-if load_city_btn:
-    with st.spinner(f"🌍 Fetching transit data for {target_city}..."):
-        _df, _from_cache = load_or_create_city(target_city, user_lat, user_lon)
-    if len(_df) == 0:
-        st.error("❌ No bus stops found for this location. Try a nearby major city name.")
-    else:
-        st.session_state["city_df"] = _df
-        st.session_state["city_name"] = target_city
-        if _from_cache:
-            st.success(f"⚡ Loaded {len(_df):,} stops from local cache")
-        else:
-            st.success(f"🌍 Downloaded {len(_df):,} bus stops — cached for next run")
-
-# Handle manual CSV / image upload override
-if mode == "Upload CSV" and uploaded_file:
-    from core.data_loader import load_stops
-    uploaded_file.seek(0)
-    try:
-        st.session_state["city_df"] = load_stops(uploaded_file)
-        st.session_state["city_name"] = target_city
-    except UnicodeDecodeError:
-        st.error("❌ Encoding error reading CSV.")
-elif mode == "Map Image (AI)" and uploaded_file:
-    base_lat, base_lon = user_lat, user_lon
-    from utils.map_visualizer import detect_stops_from_image
-    uploaded_file.seek(0)
-    _img_df = detect_stops_from_image(uploaded_file, base_lat, base_lon)
-    if len(_img_df) > 0:
-        st.session_state["city_df"] = _img_df
-        st.session_state["city_name"] = target_city
-
-if "city_df" not in st.session_state or not st.session_state.generated:
-    st.info("👈 Enter a city name, click **🌍 Load City Data**, then **🚀 Generate Smart Plan**.")
-elif st.session_state.generated:
+if uploaded_file and st.session_state.generated:
 
     with st.spinner("🧠 AI is planning the bus network..."):
-        show_pipeline_progress()
+        show_progress()
 
         try:
-            df = st.session_state["city_df"].copy()
-            base_lat = df["lat"].mean()
-            base_lon = df["lon"].mean()
+            # -------- GEOCODING --------
+            # -------- GEOCODING --------
+            # -------- GEOCODING --------
+            # Default coordinates (New York City) if geocoding fails
+            base_lat, base_lon = 40.7128, -74.0060
+            
+            # Offline Fallback Dictionary for common cities (Instant & Works Offline)
+            OFFLINE_CITIES = {
+                "new york": (40.7128, -74.0060),
+                "london": (51.5074, -0.1278),
+                "paris": (48.8566, 2.3522),
+                "tokyo": (35.6762, 139.6503),
+                "mumbai": (19.0760, 72.8777),
+                "delhi": (28.6139, 77.2090),
+                "patan": (23.8512, 72.1266),
+                "ahmedabad": (23.0225, 72.5714),
+                "bangalore": (12.9716, 77.5946),
+                "san francisco": (37.7749, -122.4194)
+            }
+
+            if mode == "Map Image (AI)":
+                city_key = target_city.lower().split(",")[0].strip()
+                
+                # 1. Try Offline Dictionary First 
+                if city_key in OFFLINE_CITIES:
+                    base_lat, base_lon = OFFLINE_CITIES[city_key]
+                    st.success(f"📍 Map aligned to: {target_city} (Offline Cache)")
+                
+                else:
+                    # 2. Try Nominatim (OSM)
+                    try:
+                        geolocator = Nominatim(user_agent="BusAI_Planner_Universal", timeout=5)
+                        location = geolocator.geocode(target_city)
+                        if location:
+                            base_lat = location.latitude
+                            base_lon = location.longitude
+                            st.success(f"📍 Map aligned to: {location.address}")
+                        else:
+                            raise Exception("City not found in OSM")
+                            
+                    except Exception:
+                        # 3. Try ArcGIS (Fallback - often works when OSM is blocked)
+                        try:
+                            geolocator = ArcGIS(user_agent="BusAI_Planner_Universal", timeout=5)
+                            location = geolocator.geocode(target_city)
+                            if location:
+                                base_lat, base_lon = location.latitude, location.longitude
+                                st.success(f"📍 Map aligned to: {location.address} (via ArcGIS)")
+                            else:
+                                st.warning(f"⚠️ Could not find city '{target_city}'. Using default coordinates (NYC).")
+                        except Exception:
+                            st.warning(f"⚠️ Network Warning: Could not reach map services (OSM or ArcGIS). Using default coordinates. \nTry standard cities like 'New York', 'London', 'Mumbai' for offline support.")
+
+            # -------- LOAD DATA --------
+            if mode == "CSV Coordinates":
+                uploaded_file.seek(0)
+                try:
+                    df = load_stops(uploaded_file)
+                except UnicodeDecodeError:
+                    st.error("❌ Error loading CSV: It looks like you uploaded a binary file (Image) but selected 'CSV Coordinates' mode. Please switch to 'Map Image (AI)' mode.")
+                    st.stop()
+            elif mode == "Map Image (AI)":
+                uploaded_file.seek(0)
+                df = detect_stops_from_image(uploaded_file, base_lat, base_lon)
 
             # -------- PIPELINE (CACHED) --------
             with st.spinner("🧠 Running multi-model transit AI..."):
