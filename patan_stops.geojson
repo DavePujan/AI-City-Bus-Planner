@@ -1,0 +1,705 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 1",
+        "id": 0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.11055423260194,
+          23.838910335677696
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 2",
+        "id": 1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.12236201695441,
+          23.859198331422146
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 3",
+        "id": 2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.15295551804896,
+          23.869183153768088
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 4",
+        "id": 3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.12757859541159,
+          23.842416785753525
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 5",
+        "id": 4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.1450598045846,
+          23.87106521043011
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 6",
+        "id": 5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.14697279701217,
+          23.850897706942774
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 7",
+        "id": 6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.11454553828202,
+          23.866045432659458
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 8",
+        "id": 7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.12692460170761,
+          23.832794486416198
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 9",
+        "id": 8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.12130793549964,
+          23.84317568550508
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 10",
+        "id": 9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.11551600341441,
+          23.84459232966832
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 11",
+        "id": 10
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.12582205721843,
+          23.85902212706225
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 12",
+        "id": 11
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.13015674135937,
+          23.879362662222377
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 13",
+        "id": 12
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.11869848079684,
+          23.832389352244185
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 14",
+        "id": 13
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.11510662522349,
+          23.839344052264117
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 15",
+        "id": 14
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.12604426392211,
+          23.848808254616085
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 16",
+        "id": 15
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.11281058720735,
+          23.87360845491369
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 17",
+        "id": 16
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.12067058347404,
+          23.866227056267537
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 18",
+        "id": 17
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.13683654796425,
+          23.84414058928196
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 19",
+        "id": 18
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.09999946376713,
+          23.829969672210527
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 20",
+        "id": 19
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.12097500128517,
+          23.827775148175647
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 21",
+        "id": 20
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.13500553627449,
+          23.86474406892398
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 22",
+        "id": 21
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.09751635954382,
+          23.83665387965094
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 23",
+        "id": 22
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.10884048360008,
+          23.856871273656306
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 24",
+        "id": 23
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.14730741634696,
+          23.850358683818467
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 25",
+        "id": 24
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.14508598186958,
+          23.844378270751516
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 26",
+        "id": 25
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.11296553422676,
+          23.841969045589885
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 27",
+        "id": 26
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.10162665427616,
+          23.87024153686615
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 28",
+        "id": 27
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.11268162076583,
+          23.836624098887455
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 29",
+        "id": 28
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.15435412727886,
+          23.821604878329694
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 30",
+        "id": 29
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.11453528270137,
+          23.82319971890668
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 31",
+        "id": 30
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.10977568586532,
+          23.833051343858333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 32",
+        "id": 31
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.11655616526212,
+          23.834914164259466
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 33",
+        "id": 32
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.10946244436441,
+          23.83592942180618
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 34",
+        "id": 33
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.14996437024291,
+          23.844460582552642
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 35",
+        "id": 34
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.15243259508232,
+          23.823519512960242
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 36",
+        "id": 35
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.1274422766594,
+          23.823428518297547
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 37",
+        "id": 36
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.11771207541194,
+          23.832688344652055
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 38",
+        "id": 37
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.13658967714376,
+          23.839742235925364
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 39",
+        "id": 38
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.1463487467365,
+          23.880759685293043
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 40",
+        "id": 39
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.1182038253515,
+          23.830277216200454
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 41",
+        "id": 40
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.12689158708545,
+          23.837800437400166
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 42",
+        "id": 41
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.14756801835294,
+          23.87595844516208
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 43",
+        "id": 42
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.10380004602966,
+          23.878477917071603
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 44",
+        "id": 43
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.14589928217045,
+          23.834630960978142
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 45",
+        "id": 44
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.13832031765571,
+          23.84782749012259
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 46",
+        "id": 45
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.15546657528125,
+          23.8538889683795
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 47",
+        "id": 46
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.15419560614389,
+          23.85104312501065
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 48",
+        "id": 47
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.13452326414942,
+          23.841208783123133
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 49",
+        "id": 48
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.11804997373693,
+          23.836741311279418
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patan Stop 50",
+        "id": 49
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.12155938457884,
+          23.857643919745925
+        ]
+      }
+    }
+  ]
+}

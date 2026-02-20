@@ -1,0 +1,66 @@
+# ── Python ──────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ── Virtual environments ─────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+
+# ── Environment / secrets ────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ── Streamlit ────────────────────────────────────────────────────────────────
+.streamlit/secrets.toml
+
+# ── OSMnx / network cache ────────────────────────────────────────────────────
+cache/
+
+# ── City stop cache (large, user-specific) ───────────────────────────────────
+data/city_cache/
+
+# ── Generated outputs ────────────────────────────────────────────────────────
+outputs/
+*.zip
+
+# ── ML artefacts ─────────────────────────────────────────────────────────────
+*.pt
+*.pth
+*.pkl
+*.joblib
+*.h5
+*.onnx
+
+# ── Large media / maps ───────────────────────────────────────────────────────
+output map.png
+output_map.png
+*.geotiff
+
+# ── Jupyter ──────────────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb
+
+# ── OS / editors ─────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+.idea/
+.vscode/
+*.code-workspace
+
+# ── Logs / traces ────────────────────────────────────────────────────────────
+*.log
+import_trace.txt
