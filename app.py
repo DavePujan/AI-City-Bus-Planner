@@ -284,7 +284,9 @@ def render_routes_and_hubs(routes, stops_df, hubs_df, boundary_gdf=None):
             style = dict(color="#00E5FF", weight=6, opacity=0.95)
             layer = trunk_layer
         else:
-            style = dict(color="#FF6B6B", weight=3, opacity=0.70)
+            # dashed lines make feeders visually secondary
+            style = dict(color="#FF5252", weight=3, opacity=0.75,
+                         dash_array="8 5")
             layer = feeder_layer
 
         folium.PolyLine(coords, **style, tooltip=str(rid)).add_to(layer)
@@ -316,12 +318,14 @@ def render_routes_and_hubs(routes, stops_df, hubs_df, boundary_gdf=None):
             # core marker
             folium.CircleMarker(
                 [h["lat"], h["lon"]],
-                radius=7,
+                radius=10,
                 color="#FFC107", fill=True,
                 fill_color="#FFC107", fill_opacity=0.95,
                 popup=folium.Popup(
-                    f"<b>{h['hub_id']}</b><br>🚌 {h['n_trunk_points']} trunk stops",
-                    max_width=200,
+                    f"<b>{h['hub_id']}</b><br>"
+                    f"📊 Centrality: {h.get('centrality', '—')}<br>"
+                    f"🚌 Trunk stops: {h.get('n_trunk_stops', h.get('n_trunk_points', '—'))}",
+                    max_width=220,
                 ),
                 tooltip=h["hub_id"],
             ).add_to(m)

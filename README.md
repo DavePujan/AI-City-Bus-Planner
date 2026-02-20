@@ -1,69 +1,3 @@
-# 🧠 BusAI Planner — Key Implementations
-
-## 🧠 Machine Learning (Demand Intelligence)
-
-- Implemented multi-model transit demand prediction using **XGBoost, CNN, and GNN** ensemble.
-- Built city-agnostic CNN demand model with dynamic grid sizing and global pooling.
-- Added graph neural network (GNN) spatial refinement for neighborhood demand smoothing.
-- Engineered urban features including population density, road density, and accessibility metrics.
-- Created synthetic demand generator for cold-start cities without historical data.
-- Implemented feature importance analytics for model interpretability.
-- Added safe ML inference wrappers to prevent runtime crashes.
-- Designed ensemble fusion pipeline to combine tree, deep, and graph predictions.
-- Enabled automatic demand normalization across different city scales.
-- Integrated model comparison diagnostics for validation during development.
-
-## 🗺️ Core Transit Planning Engine
-
-- Built automatic city ingestion pipeline from latitude/longitude or city name.
-- Implemented dynamic city radius detection using real urban footprint.
-- Added metro vs city scale detection for adaptive planning parameters.
-- Developed OSM-based real road network extraction using OSMnx.
-- Implemented road-following route generation (no straight-line routing).
-- Built corridor detection system for BRT-style trunk identification.
-- Added trunk–feeder network generation for hierarchical transit design.
-- Implemented transfer hub optimization using spatial clustering.
-- Built bus stop spacing optimization based on urban density.
-- Added dynamic route frequency optimization using demand and capacity.
-- Implemented peak vs off-peak service scheduling.
-- Built passenger load simulation over 24-hour horizon.
-- Added real-time adaptive re-routing simulation framework.
-- Implemented bus allocation optimizer based on load factor targets.
-- Added strict GTFS validation pipeline.
-
-## 📦 GTFS Export (Deployment Ready)
-
-- Generated full GTFS feed for real-world transit deployment.
-- Implemented `shapes.txt` export for exact route geometry.
-- Added frequency-based GTFS (`frequencies.txt`) support.
-- Built `stop_times` and `trips` generation from simulated schedules.
-- Implemented GTFS edge-case validation and repair.
-- Ensured GTFS-compliant transfer hub modeling.
-
-## 🎨 Visualization & UI (Streamlit Control Center)
-
-- Built dark-mode transit control center UI in Streamlit.
-- Implemented interactive road-following route preview map.
-- Added AI demand heatmap visualization.
-- Created Routes & Transfer Hub live preview.
-- Built load simulation dashboard per route.
-- Added automatic city caching to CSV for fast reloads.
-- Implemented multi-tab analytical dashboard.
-- Added professional transit color palette rendering.
-- Built responsive control panel for planning parameters.
-- Implemented safe caching to prevent redundant heavy computations.
-
-## ⚙️ System Robustness & Production Readiness
-
-- Added automatic fallback when OSM/Nominatim unavailable.
-- Implemented city-agnostic processing pipeline (works globally).
-- Built defensive error handling across ML and routing stack.
-- Enabled high-performance caching with Streamlit `cache_data`.
-- Designed modular core architecture for extensibility.
-- Optimized pipeline for hackathon-speed execution.
-
----
-
 # 🧠 BusAI Smart Transit Planner
 
 > AI-driven urban bus network design, simulation, and GTFS export platform — built for any city on Earth.
@@ -136,6 +70,71 @@ AI City Bus Planner/
 │
 └── outputs/                   # Generated routes, maps, GTFS
 ```
+
+# 🧠 BusAI Planner — Key Implementations
+
+## 🧠 Machine Learning (Demand Intelligence)
+
+- Implemented multi-model transit demand prediction using **XGBoost, CNN, and GNN** ensemble.
+- Built city-agnostic CNN demand model with dynamic grid sizing and global pooling.
+- Added graph neural network (GNN) spatial refinement for neighborhood demand smoothing.
+- Engineered urban features including population density, road density, and accessibility metrics.
+- Created synthetic demand generator for cold-start cities without historical data.
+- Implemented feature importance analytics for model interpretability.
+- Added safe ML inference wrappers to prevent runtime crashes.
+- Designed ensemble fusion pipeline to combine tree, deep, and graph predictions.
+- Enabled automatic demand normalization across different city scales.
+- Integrated model comparison diagnostics for validation during development.
+
+## 🗺️ Core Transit Planning Engine
+
+- Built automatic city ingestion pipeline from latitude/longitude or city name.
+- Implemented dynamic city radius detection using real urban footprint.
+- Added metro vs city scale detection for adaptive planning parameters.
+- Developed OSM-based real road network extraction using OSMnx.
+- Implemented road-following route generation (no straight-line routing).
+- Built corridor detection system for BRT-style trunk identification.
+- Added trunk–feeder network generation for hierarchical transit design.
+- Implemented transfer hub optimization using spatial clustering.
+- Built bus stop spacing optimization based on urban density.
+- Added dynamic route frequency optimization using demand and capacity.
+- Implemented peak vs off-peak service scheduling.
+- Built passenger load simulation over 24-hour horizon.
+- Added real-time adaptive re-routing simulation framework.
+- Implemented bus allocation optimizer based on load factor targets.
+- Added strict GTFS validation pipeline.
+
+## 📦 GTFS Export (Deployment Ready)
+
+- Generated full GTFS feed for real-world transit deployment.
+- Implemented `shapes.txt` export for exact route geometry.
+- Added frequency-based GTFS (`frequencies.txt`) support.
+- Built `stop_times` and `trips` generation from simulated schedules.
+- Implemented GTFS edge-case validation and repair.
+- Ensured GTFS-compliant transfer hub modeling.
+
+## 🎨 Visualization & UI (Streamlit Control Center)
+
+- Built dark-mode transit control center UI in Streamlit.
+- Implemented interactive road-following route preview map.
+- Added AI demand heatmap visualization.
+- Created Routes & Transfer Hub live preview.
+- Built load simulation dashboard per route.
+- Added automatic city caching to CSV for fast reloads.
+- Implemented multi-tab analytical dashboard.
+- Added professional transit color palette rendering.
+- Built responsive control panel for planning parameters.
+- Implemented safe caching to prevent redundant heavy computations.
+
+## ⚙️ System Robustness & Production Readiness
+
+- Added automatic fallback when OSM/Nominatim unavailable.
+- Implemented city-agnostic processing pipeline (works globally).
+- Built defensive error handling across ML and routing stack.
+- Enabled high-performance caching with Streamlit `cache_data`.
+- Designed modular core architecture for extensibility.
+- Optimized pipeline for hackathon-speed execution.
+
 
 ---
 
